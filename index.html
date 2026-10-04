@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>India Through Time — Modern Indian History</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== TYPOGRAPHY & GLOBAL ===== */
+:root{
+  --paper:#f3ead8; --card:#faf4e6; --ink:#2b221b; --brown:#5b4636; --muted:#7a6a5a;
+  --gold:#a8873f; --olive:#59623f; --line:#b9a583;
+  --serif:'Cormorant Garamond','EB Garamond',Georgia,serif;
+  --sans:'Inter','Source Sans 3',system-ui,sans-serif;
+  --tone:#f3ead8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+body::before{ /* paper texture, CSS/SVG generated */
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .26 0 0 0 0 .17 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:2px}
+.nav{position:fixed;top:0;left:0;right:0;height:56px;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:0 40px;background:var(--paper);border-bottom:1px solid rgba(185,165,131,.4);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brown);mix-blend-mode:normal}
+.nav .ph{margin-left:28px;visibility:hidden;pointer-events:none;user-select:none}
+.nav a.brand{text-decoration:none;font-family:var(--serif);font-size:15px;letter-spacing:.08em;text-transform:none;font-weight:600;margin:0;opacity:1}
+
+/* ===== INTRO ===== */
+.intro{position:relative;z-index:1;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px}
+.intro-inner{will-change:opacity,transform}
+.eyebrow{font-size:12px;letter-spacing:.38em;color:var(--gold);font-weight:500}
+.intro h1{font-family:var(--serif);font-weight:600;font-size:clamp(52px,9vw,128px);line-height:.95;margin:22px 0;letter-spacing:-.01em}
+.rule{width:64px;height:1px;background:var(--gold);margin:0 auto 22px;position:relative}
+.rule::after{content:"";position:absolute;left:50%;top:-3px;width:7px;height:7px;background:var(--paper);border:1px solid var(--gold);transform:translateX(-50%) rotate(45deg)}
+.intro p{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,24px);color:var(--brown)}
+.cue{position:absolute;bottom:34px;font-size:10px;letter-spacing:.32em;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:12px}
+.cue i{width:1px;height:38px;background:linear-gradient(var(--gold),transparent);animation:drip 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ===== TIMELINE ===== */
+#journey{position:relative;z-index:1}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--tone);transition:background-color 1.2s ease}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,var(--tone),transparent 12%,transparent 88%,var(--tone));opacity:.85}
+.stage-label{position:absolute;top:70px;left:0;right:0;text-align:center;z-index:3;pointer-events:none;transition:opacity .5s}
+.stage-label span{font-size:10px;letter-spacing:.32em;color:var(--gold);text-transform:uppercase}
+#track{position:absolute;top:0;left:0;height:100%;will-change:transform}
+#axis{position:absolute;top:50%;left:0;height:3px;margin-top:-1.5px;background:var(--line)}
+#axis::before{content:"";position:absolute;inset:-5px 0;border-top:1px solid rgba(185,165,131,.35);border-bottom:1px solid rgba(185,165,131,.35);opacity:.6}
+.item{position:absolute;top:50%;width:0;height:0}
+.phase{text-align:center}
+.phase .pw{position:absolute;left:-210px;width:420px;top:calc(-1 * min(250px, 50vh - 130px));text-align:center;opacity:calc(.25 + var(--p,0)*.75);transform:scale(calc(.85 + var(--p,0)*.15))}
+.phase small{display:block;font-size:10px;letter-spacing:.34em;color:var(--gold);margin-bottom:12px}
+.phase h2{font-family:var(--serif);font-weight:700;font-size:32px;line-height:1.05;text-transform:uppercase;letter-spacing:.04em;color:var(--olive)}
+.phase .pw::after{content:"";display:block;width:1px;height:64px;margin:18px auto 0;background:linear-gradient(var(--olive),transparent)}
+.phase .diamond{position:absolute;left:-6px;top:-6px;width:12px;height:12px;transform:rotate(45deg);background:var(--olive)}
+
+/* event */
+.ev{position:absolute;left:0;top:0;background:none;border:0;font:inherit;color:inherit;cursor:pointer;text-align:center;width:0;height:0}
+.dot{position:absolute;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;background:var(--line);transform:rotate(45deg) scale(calc(.7 + var(--p,0)*.9))}
+.stem{position:absolute;left:-.5px;width:1px;background:var(--line);opacity:calc(.3 + var(--p,0)*.7)}
+.label{position:absolute;left:-150px;width:300px;transform-origin:50% 100%;transform:scale(calc(.62 + var(--p,0)*.62));opacity:calc(.32 + var(--p,0)*.68);will-change:transform,opacity}
+.up .label{bottom:0}
+.dn .label{top:0;transform-origin:50% 0}
+.up .stem{bottom:0}.dn .stem{top:0}
+.date{display:block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:6px}
+.etitle{display:block;font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.08;color:var(--ink);position:relative;padding-bottom:10px}
+.etitle::after{content:"";position:absolute;left:50%;bottom:0;height:1px;width:calc(var(--p,0)*56px);background:var(--gold);transform:translateX(-50%)}
+.ev.active .etitle{color:#1c150f}
+.ev.active .date{color:var(--gold)}
+.endmark{text-align:center}
+.endmark .ew{position:absolute;left:-200px;width:400px;top:calc(-1 * min(200px, 50vh - 130px))}
+.endmark b{display:block;font-family:var(--serif);font-size:72px;font-weight:600;line-height:1}
+.endmark h2{font-family:var(--serif);font-size:30px;letter-spacing:.3em;font-weight:600;color:var(--olive);margin:6px 0 14px}
+.endmark p{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.endmark .diamond{position:absolute;left:-8px;top:-8px;width:16px;height:16px;transform:rotate(45deg);background:var(--gold)}
+.progress{position:absolute;left:40px;right:40px;bottom:30px;height:1px;background:rgba(185,165,131,.4);z-index:4}
+.progress i{position:absolute;left:0;top:-1px;height:3px;width:100%;background:var(--gold);transform-origin:left;transform:scaleX(0)}
+
+/* ===== HOVER CARD ===== */
+.card{position:fixed;z-index:100;width:340px;max-width:calc(100vw - 24px);background:var(--card);border:1px solid var(--line);border-top:2px solid var(--gold);padding:20px 22px 16px;border-radius:12px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 18px 40px -14px rgba(43,34,27,.35);opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(0,8px,0) scale(.97);transition:opacity .24s cubic-bezier(.2,.7,.2,1),transform .24s cubic-bezier(.2,.7,.2,1),visibility 0s .24s}
+.card::before,.card::after{content:"";position:absolute;left:0;right:0;height:26px}
+.card::before{top:-26px}.card::after{bottom:-26px}
+.card.show{pointer-events:auto;opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.card.flip{transform:translate3d(0,-8px,0) scale(.97)}
+.card.flip.show{transform:none}
+.card .cd{font-size:10px;letter-spacing:.26em;color:var(--gold);text-transform:uppercase;font-weight:600}
+.card h3,.icard h3{font-family:var(--serif);font-size:25px;line-height:1.1;margin:6px 0 12px;font-weight:700}
+.card ul,.icard ul{list-style:none;font-size:13.5px;line-height:1.55;color:var(--brown)}
+.card li,.icard li{position:relative;padding-left:16px;margin-bottom:7px}
+.card li::before,.icard li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
+.icard{display:none}
+.cfoot{margin-top:14px;padding-top:10px;border-top:1px solid rgba(185,165,131,.5);display:flex}
+.copy{display:inline-flex;align-items:center;gap:7px;font:500 11.5px var(--sans);letter-spacing:.02em;color:var(--brown);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 9px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.copy svg{width:14px;height:14px;flex:none}
+.copy .tx{display:none;white-space:nowrap}
+.copy:hover .tx,.copy:focus-visible .tx,.copy.done .tx{display:inline}
+.copy:hover{background:rgba(168,135,63,.12);border-color:var(--gold);color:var(--ink)}
+.copy.done{color:var(--olive);border-color:var(--olive);background:rgba(89,98,63,.1);cursor:default}
+.why{font-size:12.5px;line-height:1.5;color:var(--olive);margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+
+/* ===== PHASE TONES ===== */
+.stage[data-tone="0"]{--tone:#f3ead8}
+.stage[data-tone="1"]{--tone:#eee6d0}
+.stage[data-tone="2"]{--tone:#f1e6d3}
+.stage[data-tone="3"]{--tone:#ece4cf}
+
+/* ===== RESPONSIVE (vertical timeline) ===== */
+body.mobile .nav{padding:0 20px}
+body.mobile #journey{padding:40px 22px 80px;background:var(--paper)}
+body.mobile .stage{position:static;height:auto;overflow:visible;background:none}
+body.mobile .stage::after,body.mobile .stage-label,body.mobile .progress,body.mobile #axis,body.mobile .card{display:none}
+body.mobile #track{position:relative;width:auto!important;height:auto;transform:none!important;padding-left:30px;border-left:1px solid var(--line);margin-left:6px}
+body.mobile .item{position:relative;top:auto;left:auto!important;width:auto;height:auto;margin-bottom:34px;--p:1}
+body.mobile .phase .pw,body.mobile .endmark .ew{position:static;width:auto;text-align:left;transform:none;opacity:1;margin-top:18px}
+body.mobile .phase .pw::after{display:none}
+body.mobile .phase h2{font-size:28px}
+body.mobile .phase .diamond,body.mobile .endmark .diamond{left:-36px;top:6px}
+body.mobile .ev{position:relative;width:100%;height:auto;text-align:left;padding:0}
+body.mobile .dot{left:-30px;top:12px;transform:rotate(45deg)}
+body.mobile .stem{display:none}
+body.mobile .label{position:static;width:auto;transform:none;opacity:1}
+body.mobile .etitle::after{left:0;transform:none;width:40px}
+body.mobile .etitle{font-size:26px}
+body.mobile .icard{border-radius:12px;display:block;overflow:hidden;max-height:0;opacity:0;transition:max-height .35s ease,opacity .25s;background:var(--card);border:1px solid var(--line);border-top:2px solid var(--gold);margin-top:0}
+body.mobile .item.open .icard{max-height:600px;opacity:1;margin-top:12px;padding:16px 18px}
+body.mobile .endmark{text-align:left}
+body.mobile .endmark b{font-size:56px}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion:reduce){
+  .cue i{animation:none}
+  .card,.icard,.stage,.dot{transition-duration:.01ms!important}
+}
+.sr{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<!-- HTML STRUCTURE -->
+<header class="nav"><a class="brand" href="#top">India Through Time</a><nav aria-hidden="true"><span class="ph">Modern India</span><span class="ph">Timeline</span></nav></header>
+
+<section class="intro" id="top">
+  <div class="intro-inner" id="introInner">
+    <div class="eyebrow">MODERN INDIAN HISTORY</div>
+    <h1>India Through Time</h1>
+    <div class="rule"></div>
+    <p>A chronological journey through the making of modern India.</p>
+  </div>
+  <div class="cue">SCROLL TO TRAVEL THROUGH TIME<i></i></div>
+</section>
+
+<section id="journey" aria-label="Modern Indian History timeline">
+  <div class="stage" id="stage" data-tone="0">
+    <div class="stage-label"><span id="phaseLabel"></span></div>
+    <div id="track"><div id="axis"></div></div>
+    <div class="progress"><i id="bar"></i></div>
+  </div>
+</section>
+<div class="card" id="card" role="tooltip" aria-hidden="true"></div>
+
+<!-- DATA -->
+<script>
+/* ------------------------------------------------------------------
+   Supplied historical dataset (source of truth). Edit/extend freely.
+   Each phase: { phase, events:[{date,title,bullets:[],image:null}] }
+------------------------------------------------------------------- */
+const e=(date,title,bullets,why)=>({date,title,bullets,why:why||null,image:null});
+const timelineData = [
+{phase:"The Beginning of Colonial Dominance",range:"c. 1707–1857",events:[
+e("1707 onwards","Decline of the Mughal Empire",["Aurangzeb's death in 1707 weakened central Mughal authority.","Regional powers such as the Marathas, Bengal, Awadh and Hyderabad became increasingly autonomous.","Political fragmentation created opportunities for European trading companies to intervene in Indian politics.","The English East India Company gradually transformed from a trading corporation into a territorial power."],"This is the political background to the emergence of British power."),
+e("1740s–1763","European Rivalry in India",["The English, French and other European companies competed for commercial and political influence.","The Carnatic Wars brought Anglo-French rivalry into Indian politics.","British victories weakened French political ambitions in India.","The English East India Company emerged as the strongest European power."]),
+e("1757","Battle of Plassey",["Robert Clive defeated Nawab Siraj-ud-daulah of Bengal.","Mir Jafar and other Bengal elites supported the Company's conspiracy.","The Company gained decisive political influence in Bengal.","Plassey marked the beginning of the Company's transformation from trader to territorial power."]),
+e("1764","Battle of Buxar",["The Company defeated the combined forces of Mir Qasim, Shuja-ud-daulah and Mughal emperor Shah Alam II.","The victory established the Company's military superiority in eastern India.","It was more consequential for territorial power than Plassey.","The Mughal emperor's authority over Bengal, Bihar and Orissa was effectively undermined."]),
+e("1765","Diwani Rights and Company Rule in Bengal",["The Company obtained the Diwani, or revenue-collecting rights, of Bengal, Bihar and Orissa.","Revenue from Indian territory now financed further British expansion.","The Company became both a commercial organisation and a political authority.","The Bengal economy increasingly served the Company's interests."]),
+e("1765–1772","Dual Government in Bengal",["The Company controlled revenue while the Nawab nominally retained administrative authority.","This divided responsibility weakened governance.","Revenue extraction intensified while administrative accountability remained unclear.","Warren Hastings ended the arrangement in 1772."]),
+e("1773","Regulating Act",["The British Parliament intervened directly in Company administration.","The Governor of Bengal became the Governor-General of Bengal.","Warren Hastings became the first Governor-General.","A Supreme Court was established at Calcutta."]),
+e("1784","Pitt's India Act",["The British government strengthened its control over Company affairs.","A Board of Control was created to supervise political matters.","The Company retained commercial functions.","A system of dual control between the Company and British government emerged."]),
+e("1793","Permanent Settlement",["Introduced in Bengal under Lord Cornwallis.","Zamindars were recognised as landholders responsible for collecting revenue.","Land revenue was fixed permanently for the government.","The system strengthened zamindars but placed heavy pressure on cultivators."]),
+e("1798–1805","Subsidiary Alliance",["Developed aggressively under Lord Wellesley.","Indian rulers accepted British troops within their territories.","They had to pay for the subsidiary force or surrender territory.","Foreign relations increasingly came under British control."]),
+e("1799","Defeat of Tipu Sultan",["The Fourth Anglo-Mysore War ended with Tipu Sultan's death.","Mysore lost significant territory and political independence.","British influence in southern India expanded.","Mysore became part of the expanding British political system."]),
+e("1790s–1840s","Expansion through War and Treaties",["The Company defeated major Indian powers through a combination of warfare, diplomacy and treaties.","The Anglo-Maratha Wars weakened the Maratha Confederacy.","British control expanded across large parts of the subcontinent.","Punjab remained a major independent power until the Anglo-Sikh Wars."]),
+e("1813","Charter Act of 1813",["Ended the Company's monopoly over most Indian trade.","Allowed greater involvement of Christian missionaries in India.","Marked increasing British interest in education and cultural intervention.","The Company's commercial privileges continued in tea and China trade."]),
+e("1833","Charter Act of 1833",["Ended the Company's remaining commercial functions.","The Company became essentially an administrative body.","The Governor-General of Bengal became the Governor-General of India.","It strengthened centralisation of British administration."]),
+e("1830s–1840s","English Education and Colonial Knowledge",["British debates shifted toward English education and Western knowledge.","Macaulay's 1835 education policy promoted English as a medium of higher education.","Western education created a new English-educated Indian middle class.","This class later became important in social reform and nationalism."]),
+e("1848–1856","Doctrine of Lapse",["Associated particularly with Governor-General Lord Dalhousie.","States without a natural male heir could be annexed by the Company.","Satara, Jhansi and Nagpur were among the states annexed under the doctrine.","The policy created deep resentment among sections of Indian ruling elites."]),
+e("1849","Annexation of Punjab",["The Second Anglo-Sikh War ended with British victory.","Punjab was annexed to British India.","The Company's territorial expansion reached its greatest extent before 1857.","British authority now covered most of the Indian subcontinent."])
+]},
+{phase:"Colonial Economy, Society and Resistance",range:"18th century–1857",events:[
+e("1793–1850s","Colonial Land Revenue Systems",["Major systems included Permanent Settlement, Ryotwari and Mahalwari.","Revenue demands were often high and rigid.","Peasants faced indebtedness, dispossession and pressure to produce commercial crops.","Land revenue became a major instrument of colonial extraction."]),
+e("18th–19th centuries","Commercialisation of Agriculture",["Indian agriculture became increasingly connected to global markets.","Indigo, cotton, opium and other commercial crops expanded.","Peasants were often pressured by European planters and moneylenders.","Food security could suffer when land shifted away from subsistence crops."]),
+e("late 18th–19th centuries","Deindustrialisation",["Traditional handicrafts faced growing competition from British manufactured goods.","Indian textile producers lost important markets.","India increasingly exported raw materials and imported manufactured goods.","The colonial economy became structurally dependent on British industry."]),
+e("18th–1850s","Early Peasant and Tribal Resistance",["Colonial revenue systems, moneylending and forest policies generated local resistance.","Santhal, Bhil, Kol and other tribal communities resisted colonial intrusion.","Peasant movements challenged revenue demands and exploitative intermediaries.","These remained largely regional rather than national movements."]),
+e("early 19th century","Social and Religious Reform Begins",["Western education and new intellectual currents stimulated debate about Indian society.","Reformers challenged practices such as sati, caste discrimination and restrictions on women.","Religious reform movements sought to reinterpret Indian traditions.","These movements contributed to the emergence of modern public debate."]),
+e("1828","Brahmo Samaj",["Founded by Raja Rammohan Roy.","Opposed social practices such as sati and promoted monotheism.","Supported women's education and social reform.","Became an important centre of India's early reform movement."]),
+e("1829","Abolition of Sati",["Governor-General William Bentinck prohibited sati in British India.","Raja Rammohan Roy was an important intellectual opponent of the practice.","The reform demonstrated growing intervention by the colonial state in social practices.","It also triggered debates over tradition, reform and colonial authority."]),
+e("1860s–1890s","Rise of New Social Reform Movements",["Prarthana Samaj, Arya Samaj, Aligarh movement, Satyashodhak Samaj and Ramakrishna Mission emerged.","Reformers addressed caste, education, women's position and religious practice.","Jyotiba Phule challenged caste hierarchy through Satyashodhak Samaj.","Swami Dayanand Saraswati advocated a return to the authority of the Vedas."]),
+e("1857–1858","Revolt of 1857",["The revolt began at Meerut and spread to Delhi, Kanpur, Lucknow, Jhansi and other regions.","Sepoy grievances combined with political, economic, social and religious discontent.","Bahadur Shah II, Rani Lakshmibai, Nana Sahib, Tantia Tope and Kunwar Singh became prominent figures.","The revolt was suppressed, but it fundamentally changed the structure of British rule."])
+]},
+{phase:"The Crown Rule and Rise of Indian Nationalism",range:"1858–1905",events:[
+e("1858","Government of India Act",["Company rule ended.","Governance of India transferred directly to the British Crown.","The Secretary of State for India gained major authority in London.","The British Crown promised greater respect for Indian princes and religious practices."]),
+e("1861","Indian Councils Act",["Legislative councils were expanded.","Indians could be nominated to legislative bodies.","Limited consultation was introduced into colonial governance.","Real executive power remained with British officials."]),
+e("1860s–1880s","Growth of Indian Public Associations",["Educated Indians formed political associations in different regions.","Organisations such as the Indian Association raised constitutional and political demands.","Newspapers became important platforms for political debate.","A wider sense of common Indian political interests developed."]),
+e("1873","Satyashodhak Samaj",["Founded by Jyotirao Phule in Maharashtra.","Challenged Brahmanical social dominance and caste inequality.","Promoted education and social equality for marginalised communities.","Expanded the social dimensions of reform beyond elite concerns."]),
+e("1875","Arya Samaj",["Founded by Swami Dayanand Saraswati.","Advocated a return to Vedic principles.","Promoted education and social reform.","Became an important force in North Indian public life."]),
+e("1870s onwards","Aligarh Movement",["Led by Sir Syed Ahmad Khan.","Promoted modern scientific and English education among Indian Muslims.","The Muhammadan Anglo-Oriental College became a major centre.","The movement contributed to the development of a modern Muslim intelligentsia."]),
+e("1878","Vernacular Press Act",["The colonial government attempted to restrict Indian-language newspapers.","The measure reflected British anxiety about political criticism.","Indian journalists and political activists opposed press restrictions.","Freedom of the press became increasingly connected with nationalist politics."]),
+e("late 19th century","Economic Critique of Colonialism",["Indian nationalists increasingly analysed the economic consequences of British rule.","Dadabhai Naoroji developed the Drain of Wealth argument.","Nationalists linked poverty and underdevelopment to colonial economic policy.","Economic criticism became an important foundation of Indian nationalism."]),
+e("1885","Formation of the Indian National Congress",["The Indian National Congress was founded in Bombay.","W.C. Bonnerjee became its first president.","Early leaders included Dadabhai Naoroji, Surendranath Banerjea and Gopal Krishna Gokhale.","The early Congress sought constitutional reform through petitions, debate and representation."]),
+e("1885–1905","The Moderate Phase",["Moderates relied on constitutional methods, petitions and public debate.","They demanded greater Indian representation in administration.","They criticised economic exploitation and racial discrimination.","Their work helped create an all-India political platform."]),
+e("1892","Indian Councils Act",["Legislative councils were expanded further.","Indians gained greater opportunity to discuss budgets and public issues.","Indirect electoral principles were introduced.","Political representation remained highly restricted."])
+]},
+{phase:"Assertive Nationalism and Swadeshi",range:"1905–1919",events:[
+e("1905","Partition of Bengal",["Lord Curzon divided Bengal in 1905.","The official justification centred on administrative convenience.","Nationalists viewed the partition as an attempt to weaken political unity.","Widespread opposition produced the Swadeshi and Boycott movements."]),
+e("1905–1908","Swadeshi and Boycott Movement",["Indians boycotted British goods and promoted indigenous products.","National education initiatives expanded.","Students, women, workers and sections of the middle class participated.","The movement introduced stronger forms of mass political mobilisation."]),
+e("1906","Formation of the Muslim League",["The All-India Muslim League was founded at Dacca.","It initially sought to protect Muslim political interests.","The organisation gradually became a major political force.","Its relationship with the Congress changed significantly over subsequent decades."]),
+e("1907","Surat Split",["Congress divided between Moderates and Assertive Nationalists.","Bal Gangadhar Tilak represented the more assertive approach.","The split weakened Congress temporarily.","Revolutionary activity and militant nationalism continued outside the Congress framework."]),
+e("1909","Morley-Minto Reforms",["The Indian Councils Act expanded legislative councils.","Separate electorates for Muslims were introduced.","Indian participation increased but remained limited.","Separate electorates institutionalised an important element of communal representation."]),
+e("1911","Annulment of Bengal Partition",["The partition of Bengal was annulled.","The British capital was shifted from Calcutta to Delhi.","The reversal demonstrated the political pressure generated by the Swadeshi movement.","Bengal was reorganised along different administrative lines."]),
+e("1915","Gandhi Returns to India",["Mahatma Gandhi returned to India after his South African experience.","He brought methods of satyagraha and non-violent mass mobilisation.","Gopal Krishna Gokhale influenced his early approach to Indian politics.","Gandhi gradually moved from local struggles to national leadership."]),
+e("1916","Home Rule Movement",["Annie Besant and Bal Gangadhar Tilak led Home Rule campaigns.","They demanded self-government for India.","The movement popularised the idea of political autonomy.","It helped revive political mobilisation after the earlier Congress split."]),
+e("1916","Lucknow Pact",["Congress and the Muslim League reached an agreement on constitutional demands.","Congress accepted separate electorates as part of the agreement.","The pact represented a significant moment of Hindu-Muslim political cooperation.","It strengthened the demand for greater Indian participation in government."])
+]},
+{phase:"Gandhian Mass Politics",range:"1917–1934",events:[
+e("1917","Champaran Satyagraha",["Gandhi intervened against the exploitation of indigo cultivators in Bihar.","The movement became Gandhi's first major satyagraha in India.","Local grievances were connected with wider political mobilisation.","It established Gandhi's credibility as a mass leader."]),
+e("1918","Ahmedabad Mill Strike",["Gandhi intervened in a dispute between textile workers and mill owners.","He used fasting and non-violent pressure.","The episode demonstrated his approach to labour disputes.","It expanded the range of issues addressed through satyagraha."]),
+e("1918","Kheda Satyagraha",["Peasants in Kheda, Gujarat faced severe crop failure.","Gandhi and local leaders demanded suspension of land revenue collection.","The campaign demonstrated organised peasant mobilisation.","Sardar Patel became an important regional leader."]),
+e("1919","Rowlatt Act",["The Act extended extraordinary wartime powers into peacetime.","It allowed detention without normal judicial safeguards.","Gandhi called for nationwide opposition.","The agitation marked the transition toward broader mass politics."]),
+e("13 April 1919","Jallianwala Bagh Massacre",["General Reginald Dyer ordered troops to fire on a gathering in Amritsar.","Hundreds were killed and wounded.","The massacre shocked India and intensified anti-colonial sentiment.","It severely damaged the legitimacy of British rule."]),
+e("1919","Government of India Act",["Introduced dyarchy in the provinces.","Provincial subjects were divided into transferred and reserved categories.","Legislative representation was expanded.","Real executive authority remained substantially with colonial officials."]),
+e("1920–1922","Non-Cooperation and Khilafat Movement",["Gandhi linked the Khilafat issue with the wider anti-colonial struggle.","Indians were encouraged to boycott government institutions, schools, courts and foreign goods.","The movement brought millions into active politics.","It became the first major nationwide mass movement led by Gandhi."]),
+e("1922","Chauri Chaura",["A violent incident in Uttar Pradesh resulted in the deaths of policemen.","Gandhi regarded the violence as incompatible with his principles.","He withdrew the Non-Cooperation Movement.","The decision created disagreement among nationalist leaders."]),
+e("1923","Swaraj Party",["C.R. Das and Motilal Nehru founded the Swaraj Party.","They entered legislative councils to obstruct colonial policies from within.","The strategy complemented rather than completely rejected nationalist politics outside legislatures.","It demonstrated strategic divisions within the nationalist movement."]),
+e("1927–1928","Simon Commission",["The British appointed a commission to review constitutional reforms.","It contained no Indian member.","Indians across political groups protested under the slogan \"Simon Go Back\".","Lala Lajpat Rai was injured during a protest and later died."]),
+e("1928","Nehru Report",["An Indian committee led by Motilal Nehru proposed a constitutional framework.","It demanded dominion status and fundamental rights.","It attempted to address minority representation.","The report revealed growing disagreement over the constitutional future of India."]),
+e("1928","Bardoli Satyagraha",["Peasants in Bardoli opposed increased land revenue.","Vallabhbhai Patel led the movement.","Successful resistance forced the government to reconsider the revenue increase.","Patel acquired the title Sardar during the movement."]),
+e("December 1929","Lahore Congress and Purna Swaraj",["Jawaharlal Nehru presided over the Lahore session.","Congress declared Purna Swaraj, or complete independence, as its objective.","26 January 1930 was observed as Independence Day.","The declaration prepared the ground for Civil Disobedience."]),
+e("1930","Salt March and Civil Disobedience",["Gandhi marched from Sabarmati Ashram to Dandi.","The salt law was deliberately broken.","Civil disobedience spread across different regions.","Peasants, women, students, merchants and other groups participated."]),
+e("1931","Gandhi-Irwin Pact",["Gandhi and Viceroy Lord Irwin reached an agreement.","Congress agreed to suspend the Civil Disobedience Movement.","Gandhi attended the Second Round Table Conference in London.","The conference failed to resolve the central constitutional issues."]),
+e("1931","Karachi Resolution",["Congress articulated a vision of fundamental rights and socio-economic justice.","It addressed civil liberties, labour rights and economic policy.","The resolution influenced later constitutional thinking.","It connected political freedom with social and economic rights."]),
+e("1932","Poona Pact",["Gandhi and B.R. Ambedkar negotiated over political representation for depressed classes.","Separate electorates proposed for depressed classes were replaced by reserved seats within joint electorates.","The agreement became an important episode in the history of caste and representation.","Ambedkar continued to demand deeper structural social reform."])
+]},
+{phase:"Towards Provincial Autonomy and Independence",range:"1935–1947",events:[
+e("1935","Government of India Act",["Introduced provincial autonomy.","Proposed a federation of British Indian provinces and princely states.","Expanded the electorate considerably, though universal suffrage did not exist.","Became the constitutional framework for the 1937 provincial elections."]),
+e("1937–1939","Congress Ministries",["Congress formed governments in several provinces after the 1937 elections.","Indian politicians gained practical experience in administering provinces.","Ministries introduced various social and administrative reforms.","Congress ministries resigned in 1939 after Britain declared India at war without consulting Indian leaders."]),
+e("1940","Rise of the Muslim League and the Lahore Resolution",["The Muslim League increasingly demanded political safeguards for Muslims.","The Lahore Resolution called for independent states in Muslim-majority regions.","The demand later became central to the Pakistan movement.","Congress and the League increasingly diverged over India's constitutional future."]),
+e("1940–1941","Individual Satyagraha",["Gandhi launched Individual Satyagraha rather than immediately beginning another mass movement.","The movement asserted India's right to oppose the war without supporting British rule.","Vinoba Bhave was the first individual satyagrahi.","Jawaharlal Nehru was among the prominent participants."]),
+e("1942","Cripps Mission",["Britain offered proposals for Indian constitutional development after the Second World War.","Congress rejected the proposals as inadequate.","The Muslim League also did not accept them as satisfying its demand.","The failure helped create the immediate background for Quit India."]),
+e("August 1942","Quit India Movement",["Congress demanded an immediate end to British rule.","Gandhi gave the call of “Do or Die.”","Major leaders were arrested immediately.","Underground networks, strikes, protests and attacks on colonial infrastructure continued despite repression."]),
+e("1942–1945","Indian National Army",["The INA was reorganised under Subhas Chandra Bose.","Bose sought to liberate India through armed struggle with Japanese support.","The INA fought alongside Japanese forces in the Burma–India theatre.","INA trials after the war generated widespread nationalist sympathy in India."]),
+e("1945","End of World War II and British Weakening",["Britain emerged from the war economically weakened.","Anti-colonial sentiment had become deeply entrenched in India.","INA trials and post-war military unrest further challenged British authority.","The Labour government in Britain was more willing to transfer power."]),
+e("1946","Cabinet Mission",["The British government sent the Cabinet Mission to negotiate India's constitutional future.","It proposed a united India with a federal structure and provincial groupings.","Congress and the Muslim League initially engaged with the plan but disagreed over its interpretation.","The Constituent Assembly was subsequently established."]),
+e("1946","Direct Action and Communal Violence",["Political disagreement between Congress and the Muslim League intensified.","The Muslim League called for Direct Action Day.","Communal violence spread from Bengal to other regions.","The political possibility of a united India became increasingly difficult."]),
+e("1946","Interim Government",["An Interim Government was formed under Jawaharlal Nehru.","The Muslim League later joined the government.","Relations between Congress and the League remained deeply strained.","The constitutional crisis accelerated the move toward partition."]),
+e("3 June 1947","Mountbatten Plan",["Lord Mountbatten presented the plan for transferring power.","British India would be divided into India and Pakistan.","Punjab and Bengal would also be partitioned.","Power would be transferred much earlier than the previously proposed June 1948 deadline."]),
+e("July 1947","Indian Independence Act",["The British Parliament passed the Indian Independence Act.","Two independent dominions, India and Pakistan, were created.","British sovereignty over India ended.","The Constituent Assemblies received authority to frame the constitutions of the two new states."]),
+e("15 August 1947","Independence and Partition",["India became independent.","Partition created India and Pakistan.","Punjab and Bengal were divided.","Massive migration and communal violence accompanied independence."])
+]}
+];
+const endNote = { date:"1947", title:"INDEPENDENCE", note:"The timeline ends here." };
+</script>
+
+<!-- JAVASCRIPT -->
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const track=$('#track'), axis=$('#axis'), stage=$('#stage'), journey=$('#journey'), card=$('#card'),
+        bar=$('#bar'), introInner=$('#introInner'), phaseLabel=$('#phaseLabel');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mq = matchMedia('(max-width: 860px)');
+  const SP_EV=300, SP_PH=440, LEAD=0.5; // spacing (px)
+  const items=[]; let trackW=0, cur=0, target=0, vw=innerWidth, vh=innerHeight, jTop=0, jH=0, rafOn=false, activeEv=null;
+
+  const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const ICON_COPY='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-1a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h1"/></svg>';
+  const ICON_TICK='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg>';
+  const footHTML = i => '<div class="cfoot"><button class="copy" type="button" data-i="'+i+'" aria-label="Copy to your notes">'+ICON_COPY+'<span class="tx">Copy to your notes</span></button></div>';
+  const evs=[];
+  const copyText = ev => ev.date+' — '+ev.title+'\n'+ev.bullets.map(b=>'• '+b).join('\n')+(ev.why?'\n\nWhy it matters: '+ev.why:'');
+  async function doCopy(t){
+    try{ await navigator.clipboard.writeText(t); return true; }catch(_){}
+    const ta=document.createElement('textarea'); ta.value=t; ta.style.cssText='position:fixed;opacity:0;top:0'; document.body.appendChild(ta); ta.select();
+    let ok=false; try{ ok=document.execCommand('copy'); }catch(_){} ta.remove(); return ok;
+  }
+  document.addEventListener('click',async e=>{
+    const b=e.target.closest('.copy'); if(!b||b.classList.contains('done')) return;
+    if(await doCopy(copyText(evs[+b.dataset.i]))){ b.classList.add('done'); b.innerHTML=ICON_TICK+'<span class="tx">Copied</span>'; b.setAttribute('aria-label','Copied'); }
+  });
+  const bulletsHTML = (b,w) => '<ul>'+b.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'+(w?'<p class="why"><b>Why it matters:</b> '+esc(w)+'</p>':'');
+
+  /* reusable components */
+  function createPhaseMarker(ph,i){
+    const el=document.createElement('div'); el.className='item phase';
+    el.innerHTML=`<div class="pw"><small>SECTION ${String(i+1).padStart(2,'0')} · ${esc(ph.range)}</small><h2>${esc(ph.phase)}</h2></div><span class="diamond"></span>`;
+    return el;
+  }
+  function createTimelineEvent(ev,n){
+    const el=document.createElement('div'); el.className='item '+(n%2?'dn':'up');
+    const k=[.65,1,.8,.9][n%4]; // varied stem heights (scaled to viewport via --sh)
+    el.innerHTML=`<button class="ev" type="button" aria-label="${esc(ev.date)}: ${esc(ev.title)}">
+        <span class="stem" style="height:calc(var(--sh)*${k})"></span><span class="dot"></span>
+        <span class="label" style="${n%2?'top':'bottom'}:calc(var(--sh)*${k})"><span class="date">${esc(ev.date)}</span><span class="etitle">${esc(ev.title)}</span></span>
+      </button>
+      <div class="icard"><h3>${esc(ev.title)}</h3>${bulletsHTML(ev.bullets,ev.why)}${footHTML(n)}</div>`;
+    return el;
+  }
+  function createEnd(){
+    const el=document.createElement('div'); el.className='item endmark';
+    el.innerHTML=`<div class="ew"><b>${esc(endNote.date)}</b><h2>${esc(endNote.title)}</h2><p>${esc(endNote.note)}</p></div><span class="diamond"></span>`;
+    return el;
+  }
+
+  /* build */
+  function build(){
+    let x=0, n=0; x=0;
+    timelineData.forEach((ph,i)=>{
+      x+= (i===0?0:SP_PH*0.5);
+      const pm=createPhaseMarker(ph,i); items.push({el:pm,x,kind:'phase',ph:i}); track.appendChild(pm);
+      x+=420;
+      ph.events.forEach(ev=>{
+        const idx=n++; evs[idx]=ev; const el=createTimelineEvent(ev,idx); items.push({el,x,kind:'ev',ev,i:idx,ph:i,btn:el.querySelector('.ev')});
+        track.appendChild(el); x+=SP_EV;
+      });
+    });
+    x+=SP_PH*0.4;
+    const en=createEnd(); items.push({el:en,x,kind:'end',ph:timelineData.length}); track.appendChild(en);
+    items.forEach(it=>it.el.style.left=it.x+'px');
+    items.filter(i=>i.kind==='ev').forEach(it=>bind(it));
+    layout();
+  }
+
+  function layout(){
+    document.body.classList.toggle('mobile',mq.matches);
+    vw=innerWidth; vh=innerHeight;
+    track.style.setProperty('--sh',Math.max(60,Math.min(200,vh/2-290))+'px');
+    const first=items[0].x, last=items[items.length-1].x;
+    const pad=vw*LEAD; // so first/last items can sit at centre
+    items.forEach(it=>it.el.style.left=(it.x+pad)+'px');
+    trackW=last+pad*2; track.style.width=trackW+'px';
+    axis.style.left=(first+pad)+'px'; axis.style.width=(last-first)+'px';
+    if(!mq.matches){
+      const dist=last-first; jH=dist+vh; journey.style.height=jH+'px';
+    } else journey.style.height='auto';
+    onScroll(); if(!mq.matches){cur=target;} kick();
+  }
+
+  /* scroll -> target */
+  const first=()=>items[0].x, span=()=>items[items.length-1].x-items[0].x;
+  function onScroll(){
+    const y=Math.max(0,-$('#top').getBoundingClientRect().top);
+    introInner.style.opacity=Math.max(0,1-y/(vh*.6)); introInner.style.transform=`translate3d(0,${-y*.12}px,0)`;
+    if(mq.matches) return;
+    const p=Math.min(1,Math.max(0,-journey.getBoundingClientRect().top/Math.max(1,jH-vh)));
+    target=p*span(); bar.style.transform=`scaleX(${p})`; kick();
+  }
+  function kick(){ if(!rafOn){rafOn=true; requestAnimationFrame(frame);} }
+
+  /* animation loop: lerp + proximity scaling */
+  function frame(){
+    rafOn=false; if(mq.matches) return;
+    cur = reduce ? target : cur+(target-cur)*0.085;
+    let more=false; if(Math.abs(target-cur)<.15) cur=target; else more=true;
+    // centre of viewport in track coords = cur + first + pad
+    const centre = cur + first() + vw*LEAD - 0; // item.x + pad == centre when at that item
+    track.style.transform=`translate3d(${-(cur + first())}px,0,0)`;
+    let best=null, bd=1e9; const R=vw*0.34;
+    for(const it of items){
+      const d=Math.abs((it.x)-(cur+first()));
+      let p=Math.max(0,1-d/R); p=p*p*(3-2*p); // smoothstep
+      it.el.style.setProperty('--p',p.toFixed(3));
+      if(it.kind==='ev'&&d<bd){bd=d;best=it;}
+    }
+    // phase label + tone
+    let ph=0; for(const it of items){ if(it.kind==='phase'&&it.x<=cur+first()+SP_PH*.5) ph=it.ph; }
+    const label = ph<timelineData.length? timelineData[ph].phase : '';
+    if(phaseLabel.textContent!==label) phaseLabel.textContent=label;
+    stage.dataset.tone=ph%4;
+    if(best!==activeEv){ activeEv&&activeEv.btn.classList.remove('active'); activeEv=best; best&&best.btn.classList.add('active'); }
+    if(hovered) place(hovered);
+    if(more){rafOn=true; requestAnimationFrame(frame);}
+  }
+
+  /* hover / focus / tap */
+  let hovered=null, ht=null; const canHover=matchMedia('(hover:hover)').matches;
+  function place(it){
+    const r=it.btn.querySelector('.dot').getBoundingClientRect();
+    const lr=it.btn.querySelector('.label').getBoundingClientRect();
+    const cw=card.offsetWidth, ch=card.offsetHeight, g=16;
+    const up=it.el.classList.contains('up');
+    const spaceBelow=vh-Math.max(r.bottom,lr.bottom), spaceAbove=Math.min(r.top,lr.top);
+    // label sits on one side; prefer the opposite side of the axis
+    let below = !up; if(below&&spaceBelow<ch+g) below=false; if(!below&&spaceAbove<ch+g) below=true;
+    const y= below ? Math.max(r.bottom,lr.bottom)+g : Math.min(r.top,lr.top)-ch-g;
+    let x=r.left+r.width/2-cw/2; x=Math.max(12,Math.min(vw-cw-12,x));
+    card.style.left=x+'px'; card.style.top=Math.max(8,Math.min(vh-ch-8,y))+'px';
+    card.classList.toggle('flip',!below);
+  }
+  function show(it){
+    if(mq.matches) return; clearTimeout(ht); hovered=it;
+    card.innerHTML=`<div class="cd">${esc(it.ev.date)}</div><h3>${esc(it.ev.title)}</h3>${bulletsHTML(it.ev.bullets,it.ev.why)}${footHTML(it.i)}`;
+    card.setAttribute('aria-hidden','false'); place(it); card.classList.add('show');
+    it.btn.setAttribute('aria-describedby','card');
+  }
+  function hide(it){ if(hovered===it){hovered=null;} card.classList.remove('show'); card.setAttribute('aria-hidden','true'); it.btn.removeAttribute('aria-describedby'); }
+  function bind(it){
+    const b=it.btn;
+    b.addEventListener('mouseenter',()=>{ if(mq.matches){ if(canHover) it.el.classList.add('open'); } else show(it); });
+    b.addEventListener('mouseleave',()=>{ if(!mq.matches){ clearTimeout(ht); ht=setTimeout(()=>hide(it),160); } });
+    it.el.addEventListener('mouseleave',()=>{ if(mq.matches&&canHover) it.el.classList.remove('open'); });
+    b.addEventListener('focus',()=>{
+      if(!mq.matches){ // bring focused event to centre
+        const y=scrollY+journey.getBoundingClientRect().top+((it.x-first())/span())*(jH-vh);
+        scrollTo({top:y,behavior:reduce?'auto':'smooth'});
+      }
+      show(it);
+    });
+    b.addEventListener('blur',()=>hide(it));
+    b.addEventListener('click',()=>{ if(mq.matches&&!canHover){ it.el.classList.toggle('open'); b.setAttribute('aria-expanded',it.el.classList.contains('open')); } });
+    b.addEventListener('keydown',e=>{ if(e.key==='Escape') hide(it); });
+  }
+
+  card.addEventListener('mouseenter',()=>clearTimeout(ht));
+  card.addEventListener('mouseleave',()=>{ if(hovered) hide(hovered); });
+  addEventListener('scroll',onScroll,{passive:true,capture:true});
+  addEventListener('resize',layout);
+  mq.addEventListener('change',layout);
+  document.fonts&&document.fonts.ready.then(layout);
+  build();
+})();
+</script>
+</body>
+</html>
