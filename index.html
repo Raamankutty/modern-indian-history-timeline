@@ -37,7 +37,7 @@ a{color:inherit}
 .rule::after{content:"";position:absolute;left:50%;top:-3px;width:7px;height:7px;background:var(--paper);border:1px solid var(--gold);transform:translateX(-50%) rotate(45deg)}
 .intro p{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,24px);color:var(--brown)}
 .cue{position:absolute;bottom:34px;font-size:10px;letter-spacing:.32em;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:12px}
-.cue i{width:1px;height:38px;background:linear-gradient(var(--gold),transparent);animation:drip 2.2s ease-in-out infinite;transform-origin:top}
+.cue i{width:3px;border-radius:3px;height:40px;background:linear-gradient(var(--gold),transparent);animation:drip 2.2s ease-in-out infinite;transform-origin:top}
 @keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 
 /* ===== TIMELINE ===== */
@@ -132,7 +132,7 @@ body.mobile .endmark b{font-size:56px}
 
 /* ===== ACCESSIBILITY ===== */
 @media (prefers-reduced-motion:reduce){
-  .cue i{animation:none}
+  .cue i,.cue span{animation:none}
   .card,.icard,.stage,.dot{transition-duration:.01ms!important}
 }
 .sr{position:absolute;left:-9999px}
@@ -218,8 +218,8 @@ body.mobile .sc,body.mobile .toStart{display:none}
 .fbpop .go:hover{background:var(--olive)}
 .fbpop .no{display:block;margin:12px auto 0;background:none;border:0;font:400 11px var(--sans);color:var(--muted);text-decoration:underline;cursor:pointer}
 
-.head{position:absolute;left:0;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--gold);box-shadow:0 1px 5px rgba(43,34,27,.35);cursor:grab;touch-action:none;transition:transform .15s}
-.head:hover,.head.drag{transform:scale(1.2)}.head.drag{cursor:grabbing}
+.head{position:absolute;left:0;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--gold);box-shadow:0 1px 5px rgba(43,34,27,.35);cursor:grab;touch-action:none;transition:transform .15s}
+.head:hover,.head.drag{transform:scale(1.15)}.head.drag{cursor:grabbing}
 .setwrap{margin-left:12px}
 .fb{display:inline-flex;align-items:center;gap:7px}.fb svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round}
 .setpop{width:176px;padding:14px}
@@ -238,21 +238,71 @@ html[data-theme="dark"] .stage[data-tone="0"]{--tone:#1c1713}html[data-theme="da
 html[data-theme="dark"] .stage[data-tone="2"]{--tone:#1e1814}html[data-theme="dark"] .stage[data-tone="3"]{--tone:#241d17}
 html[data-theme="dark"] body::before{opacity:.06;mix-blend-mode:screen}
 html[data-theme="dark"] .sc{color:#eadfc9}
+
+.cue span{display:block;animation:bob 5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+:root{--save:#3b5b8c}html[data-theme="dark"]{--save:#8fb0e0}
+.nav .ph{position:absolute;margin:0}
+.pd{position:absolute;bottom:calc(100% + 6px);width:3px;height:3px;margin-left:-1.5px;padding:0;border:0;border-radius:50%;background:var(--line);cursor:pointer;transition:transform .2s,background .2s}
+.pd::after{content:"";position:absolute;inset:-4px}
+.pd.big{width:7px;height:7px;margin-left:-3.5px;bottom:calc(100% + 7px);background:var(--gold)}
+.pd:hover,.pd.hit{transform:scale(1.5);background:var(--gold)}
+.sep{position:absolute;top:-2px;width:4px;height:7px;margin-left:-2px;background:var(--tone);text-decoration:none}
+.sv{position:absolute;bottom:calc(100% + 17px);width:15px;height:19px;margin-left:-7.5px;padding:0;border:0;background:none;color:var(--save);cursor:pointer;animation:svpop .6s cubic-bezier(.3,1.6,.4,1);filter:drop-shadow(0 1px 2px rgba(43,34,27,.3));transition:transform .2s}
+.sv:hover{transform:translateY(-2px) scale(1.12)}
+.sv svg{display:block;width:100%;height:100%;fill:currentColor}
+@keyframes svpop{0%{transform:scale(0) translateY(10px);opacity:0}100%{transform:none;opacity:1}}
+.search{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(380px,28vw);text-transform:none;letter-spacing:0}
+.search>svg{position:absolute;left:13px;top:50%;margin-top:-7px;width:14px;height:14px;stroke:var(--muted);fill:none;stroke-width:1.6;stroke-linecap:round}
+.search input{width:100%;height:34px;border-radius:999px;border:0;background:rgba(185,165,131,.2);padding:0 14px 0 36px;font:400 13.5px var(--sans);color:var(--ink);transition:background .2s}
+.search input:focus-visible{outline:none;box-shadow:0 0 0 2px rgba(168,135,63,.55)}
+.search input::placeholder{color:var(--muted)}.search input:focus{background:rgba(185,165,131,.32)}
+.sres{position:absolute;top:calc(100% + 8px);left:0;right:0;max-height:360px;overflow:auto;background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:6px;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .2s,transform .2s,visibility 0s .2s}
+.sres.open{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.sri{display:flex;gap:12px;align-items:baseline;width:100%;text-align:left;border:0;background:none;padding:9px 10px;border-radius:8px;cursor:pointer;color:var(--ink)}
+.sri:hover,.sri.act{background:rgba(168,135,63,.16)}
+.sd{flex:none;min-width:88px;font:500 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.st{font-family:var(--serif);font-size:17px;font-weight:600;line-height:1.15}
+.sn{padding:10px;color:var(--muted);font-size:13px}
+.aboutLink{position:fixed;top:68px;right:40px;z-index:45;font-size:12.5px;color:var(--brown);text-decoration:underline;text-underline-offset:3px}
+.aboutLink:hover{color:var(--gold)}
+.about{position:fixed;top:56px;left:0;right:0;bottom:0;z-index:48;overscroll-behavior:contain;background:var(--paper);overflow:auto;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s;display:flex;justify-content:center;padding:84px 24px 90px}
+.about.open{opacity:1;visibility:visible;transition-delay:0s}
+.about article{max-width:640px;width:100%}
+.about small{font-size:11px;letter-spacing:.34em;color:var(--gold)}
+.about h2{font-family:var(--serif);font-size:clamp(40px,6vw,64px);font-weight:600;margin:10px 0 22px}
+.about p{font-size:calc(17px*var(--fz));line-height:1.7;color:var(--brown);margin-bottom:14px}
+.aback{position:fixed;top:74px;left:40px;z-index:49;font:500 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--brown);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;transition:background .2s,border-color .2s}
+.aback:hover{background:var(--paper);border-color:var(--gold)}
+@media (max-width:1100px){.setbtn span{display:none}}
+body.mobile .search{display:none}body.mobile .aboutLink{position:absolute}
+.lslot{position:relative;height:56px;min-width:190px;flex:none}
+.lu{position:absolute;left:0;top:50%;margin-top:-8px;white-space:nowrap;font-size:11px;letter-spacing:.06em;text-transform:none;color:var(--muted);transition:opacity .3s,transform .6s cubic-bezier(.34,1.56,.64,1)}
+.nav .lslot a.brand{position:absolute;left:0;top:50%;margin-top:-11px;white-space:nowrap;opacity:0;transform:translateY(-18px) scale(.8);transform-origin:left center;pointer-events:none;transition:opacity .3s,transform .8s cubic-bezier(.34,1.9,.5,1)}
+.nav.scrolled .lslot a.brand{opacity:1;transform:none;pointer-events:auto}
+.nav.scrolled .lu{opacity:0;transform:translateY(14px)}
+body.mobile .lslot{min-width:0;width:150px}body.mobile .lu{font-size:10px;white-space:normal;line-height:1.2}
 </style>
 </head>
 <body>
 <!-- HTML STRUCTURE -->
-<header class="nav"><a class="brand" href="#top">India Through Time</a>
+<header class="nav" id="nav"><div class="lslot"><span class="lu" id="lu">Last updated: 6 October 2026</span><a class="brand" href="#top" tabindex="-1">India Through Time</a></div>
+  <div class="search" id="search"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.6 10.6L14 14"/></svg>
+    <input id="q" type="text" placeholder="Search by Event or Year" autocomplete="off" spellcheck="false" aria-label="Search by event or year" role="combobox" aria-expanded="false" aria-controls="sres">
+    <div id="sres" class="sres" role="listbox"></div></div>
   <div class="navr"><span class="ph" aria-hidden="true">Modern India</span><span class="ph" aria-hidden="true">Timeline</span>
     <div class="fbwrap"><button id="fb" class="fb" type="button" aria-haspopup="dialog" aria-expanded="false">Give feedback</button>
       <div id="fbpop" class="fbpop" role="dialog" aria-label="Give feedback"><p>You are about to enter Gmail.</p>
         <a id="fbgo" class="go" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=sreeramkarthika23%40gmail.com&amp;su=Feedback%3A%20India%20Through%20Time" target="_blank" rel="noopener noreferrer">Continue</a>
         <button id="fbno" class="no" type="button">Do not submit feedback</button></div></div>
-    <div class="fbwrap setwrap"><button id="setbtn" class="fb setbtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Settings"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.4"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.4 3.4l1.4 1.4M11.2 11.2l1.4 1.4M12.6 3.4l-1.4 1.4M4.8 11.2l-1.4 1.4"/></svg><span>Settings</span></button>
-      <div id="setpop" class="fbpop setpop" role="dialog" aria-label="Settings">
+    <div class="fbwrap setwrap"><button id="setbtn" class="fb setbtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Adjustments"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.6 1.8a3.6 3.6 0 0 0-3.4 4.7L2 11.7a1.6 1.6 0 0 0 2.3 2.3l5.2-5.2a3.6 3.6 0 0 0 4.7-3.4c0-.4-.1-.8-.2-1.1l-2.2 2.2-1.9-.4-.4-1.9 2.2-2.2a3.6 3.6 0 0 0-1.1-.2z"/></svg><span>Adjustments</span></button>
+      <div id="setpop" class="fbpop setpop" role="dialog" aria-label="Adjustments">
         <div class="pill"><button id="fzUp" type="button" aria-label="Increase font size">A+</button><button id="fzDn" type="button" aria-label="Reduce font size">A-</button></div>
         <div class="pill"><button id="thL" type="button" data-theme-btn="light" aria-label="Light mode"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.8M8 12.7v1.8M1.5 8h1.8M12.7 8h1.8M3.4 3.4l1.3 1.3M11.3 11.3l1.3 1.3M12.6 3.4l-1.3 1.3M4.7 11.3l-1.3 1.3"/></svg></button><button id="thD" type="button" data-theme-btn="dark" aria-label="Dark mode"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.2 9.6A5.6 5.6 0 0 1 6.4 2.8a5.6 5.6 0 1 0 6.8 6.8Z"/></svg></button></div>
       </div></div></div></header>
+<a href="#" id="aboutLink" class="aboutLink">About ITT</a>
+<div id="about" class="about" role="dialog" aria-modal="true" aria-label="About ITT"><button class="aback" id="aclose" type="button">← Back</button>
+  <article><small>ABOUT ITT</small><h2>About the Project</h2><div id="aboutBody"></div></article></div>
 <div id="note" class="note" role="status" aria-live="polite"></div>
 
 <section class="intro" id="top">
@@ -262,7 +312,7 @@ html[data-theme="dark"] .sc{color:#eadfc9}
     <div class="rule"></div>
     <p>A chronological journey through the making of modern India.</p>
   </div>
-  <div class="cue">SCROLL TO TRAVEL THROUGH TIME<i></i></div>
+  <div class="cue"><span>SCROLL TO TRAVEL THROUGH TIME</span><i></i></div>
 </section>
 
 <section id="journey" aria-label="Modern Indian History timeline">
@@ -487,12 +537,63 @@ return {has:k=>!!sc[k],
     if(on){ const h=m.closest('.card,.icard'); if(h){ h.classList.remove('glow'); void h.offsetWidth; h.classList.add('glow'); setTimeout(()=>h.classList.remove('glow'),1250); } }
     renderStars();
   });
+  const ICON_SAVE='<svg viewBox="0 0 16 20" aria-hidden="true"><path d="M2 1.5h12v17l-6-4.2-6 4.2Z" stroke="#fff8e8" stroke-width="1" stroke-linejoin="round"/></svg>';
   function renderStars(){
-    const pr=document.querySelector('.progress'); if(!pr) return;
-    pr.querySelectorAll('.star').forEach(el=>{ if(!saved.has(+el.dataset.i)) el.remove(); });
-    saved.forEach(i=>{ if(pr.querySelector('.star[data-i="'+i+'"]')) return; const it=items.find(x=>x.i===i); if(!it) return;
-      const st=document.createElement('b'); st.className='star'; st.dataset.i=i; st.title=it.ev.title; st.style.left=((it.x-items[0].x)/span()*100)+'%'; st.innerHTML=ICON_STAR; pr.appendChild(st); });
+    const pr2=document.querySelector('.progress'); if(!pr2) return;
+    pr2.querySelectorAll('.sv').forEach(el=>{ if(!saved.has(+el.dataset.i)) el.remove(); });
+    saved.forEach(i=>{ if(pr2.querySelector('.sv[data-i="'+i+'"]')) return; const it=items.find(x=>x.i===i); if(!it) return;
+      const b=document.createElement('button'); b.type='button'; b.className='sv'; b.dataset.i=i; b.title='Saved: '+it.ev.title; b.setAttribute('aria-label','Go to saved note: '+it.ev.title);
+      b.style.left=((it.x-items[0].x)/span()*100)+'%'; b.innerHTML=ICON_SAVE; b.addEventListener('click',()=>goTo(it,true)); pr2.appendChild(b); });
   }
+  function renderDots(){
+    const pr2=document.querySelector('.progress'); pr2.querySelectorAll('.pd,.sep').forEach(e=>e.remove()); dots=[]; const sp=span();
+    items.forEach(it=>{ const f=(it.x-items[0].x)/sp;
+      if(it.kind==='phase'&&it.ph>0){ const u=document.createElement('u'); u.className='sep'; u.style.left=(f*100)+'%'; pr2.appendChild(u); }
+      const b=document.createElement('button'); b.type='button'; b.className='pd'+(it.kind==='ev'?'':' big'); b.style.left=(f*100)+'%';
+      b.title=it.kind==='ev'?it.ev.date+' — '+it.ev.title:it.kind==='phase'?timelineData[it.ph].phase:endNote.title; b.setAttribute('aria-label',b.title);
+      b.addEventListener('click',e=>{ e.stopPropagation(); goTo(it,it.kind==='ev'); });
+      pr2.appendChild(b); dots.push({f,el:b,it}); });
+  }
+  let pendingOpen=null, navOpen=false;
+  function goTo(it,open){
+    if(mq.matches){ it.el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); if(open&&it.kind==='ev') it.el.classList.add('open'); return; }
+    scrollTo(0,scrollY+journey.getBoundingClientRect().top+((it.x-first())/span())*(jH-vh));
+    pendingOpen=(open&&it.kind==='ev')?it:null; navOpen=false; if(hovered) hide(hovered); kick();
+  }
+  /* search by event or year */
+  const qEl=$('#q'), sres=$('#sres'); let results=[], act=-1;
+  function search(q){
+    q=q.trim().toLowerCase(); if(!q) return []; const toks=q.split(/\s+/), yr=/^\d{3,4}$/.test(q)?+q:null, out=[];
+    items.forEach(it=>{ if(it.kind==='end') return; if(yr!==null&&it.kind==='phase') return;
+      const date=it.kind==='ev'?it.ev.date:timelineData[it.ph].range, title=it.kind==='ev'?it.ev.title:timelineData[it.ph].phase; let ok;
+      if(yr!==null){ const nums=(date.match(/\d{4}/g)||[]).map(Number); ok=date.includes(q)||(nums.length>1&&yr>=nums[0]&&yr<=nums[nums.length-1]); }
+      else ok=toks.every(t=>(date+' '+title).toLowerCase().includes(t));
+      if(ok) out.push({it,date,title,rank:title.toLowerCase().startsWith(toks[0])?0:1}); });
+    return out.sort((a,b)=>a.rank-b.rank).slice(0,8);
+  }
+  function renderRes(){
+    results=search(qEl.value); act=-1; const has=!!qEl.value.trim();
+    sres.innerHTML=results.length?results.map((x,k)=>'<button type="button" class="sri" role="option" data-k="'+k+'"><span class="sd">'+esc(x.date)+'</span><span class="st">'+esc(x.title)+'</span></button>').join(''):(has?'<div class="sn">No matching event or year</div>':'');
+    sres.classList.toggle('open',has); qEl.setAttribute('aria-expanded',has);
+  }
+  function pick(r){ if(!r) return; sres.classList.remove('open'); qEl.value=''; qEl.blur(); goTo(r.it,r.it.kind==='ev'); }
+  qEl.addEventListener('input',renderRes); qEl.addEventListener('focus',renderRes);
+  qEl.addEventListener('keydown',e=>{
+    const btns=[...sres.querySelectorAll('.sri')];
+    if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault(); if(!btns.length) return; act=(act+(e.key==='ArrowDown'?1:-1)+btns.length)%btns.length; btns.forEach((b,k)=>b.classList.toggle('act',k===act)); }
+    else if(e.key==='Enter'){ e.preventDefault(); pick(results[act>=0?act:0]); }
+    else if(e.key==='Escape'){ qEl.value=''; renderRes(); qEl.blur(); }
+  });
+  sres.addEventListener('click',e=>{ const b=e.target.closest('.sri'); if(b) pick(results[+b.dataset.k]); });
+  document.addEventListener('click',e=>{ if(!$('#search').contains(e.target)) sres.classList.remove('open'); });
+  /* about page */
+  const ABOUT_TEXT=["I’m Sreeram, a designer and an ex UPSC aspirant. I took up this project as a personal initiative for a few of my friends who are currently preparing for UPSC. Having once explored UPSC preparation myself, I was curious to understand how aspirants today actually study and revise a subject as extensive as Modern Indian History.", "I eventually left UPSC preparation and chose to pursue design. For this project, rather than designing around my own assumptions, I wanted to understand the habits of actual aspirants. Through conversations with aspirants, I found that revision often involves quickly scanning notes for keywords, dates, events and chronological connections, while newer aspirants need more context to understand the larger story.", "That became the starting point for this project.", "I wanted to create something that could work at two levels, a starting point for newer aspirants who need enough context to understand the story, and a quick revision tool for experienced aspirants who mainly need to scan keywords and chronology.", "The result is this interactive timeline, an attempt to make the movement of history easier to see, rather than treating it as a collection of isolated facts.", "This is an ongoing experiment, and I’m continuing to test it with UPSC aspirants to understand what actually helps them learn and revise.", "To everyone preparing for UPSC, I wish you the very best for your preparation. I hope this project proves useful in some small way, and I’m looking forward to hearing your feedback and learning from your experience with it."];
+  const about=$('#about');
+  $('#aboutBody').innerHTML=(ABOUT_TEXT.length?ABOUT_TEXT:['The text for this page has not been added yet.']).map(t=>'<p>'+esc(t)+'</p>').join('');
+  $('#aboutLink').addEventListener('click',e=>{ e.preventDefault(); about.classList.add('open'); $('#aclose').focus(); });
+  $('#aclose').addEventListener('click',()=>about.classList.remove('open'));
+  addEventListener('keydown',e=>{ if(e.key==='Escape') about.classList.remove('open'); });
+  document.addEventListener('pointerdown',e=>{ if(navOpen&&!card.contains(e.target)){ navOpen=false; if(hovered) hide(hovered); } });
   const bulletsHTML = (b,w) => '<ul>'+b.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'+(w?'<p class="why"><b>Why it matters:</b> '+esc(w)+'</p>':'');
 
   /* reusable components */
@@ -519,6 +620,7 @@ return {has:k=>!!sc[k],
 
   const SK={'The Beginning of Colonial Dominance':'company','Colonial Economy, Society and Resistance':'economy','The Crown Rule and Rise of Indian Nationalism':'crown','Assertive Nationalism and Swadeshi':'swadeshi','Gandhian Mass Politics':'gandhi','Towards Provincial Autonomy and Independence':'towards'};
   const sceneKey=it=>it.kind==='end'?'flag':it.kind==='phase'?SK[timelineData[it.ph].phase]:null;
+  let navScrolled=false; const brandA=document.querySelector('.lslot .brand');
   let focal=null; const toStart=$('#toStart'), head=$('#head');
   /* build */
   function build(){
@@ -558,6 +660,7 @@ return {has:k=>!!sc[k],
   const first=()=>items[0].x, span=()=>items[items.length-1].x-items[0].x;
   function onScroll(){
     const y=Math.max(0,-$('#top').getBoundingClientRect().top);
+    const sc2=y>60; if(sc2!==navScrolled){ navScrolled=sc2; $('#nav').classList.toggle('scrolled',sc2); brandA.tabIndex=sc2?0:-1; }
     introInner.style.opacity=Math.max(0,1-y/(vh*.6)); introInner.style.transform=`translate3d(0,${-y*.12}px,0)`;
     if(mq.matches) return;
     const p=Math.min(1,Math.max(0,-journey.getBoundingClientRect().top/Math.max(1,jH-vh)));
@@ -588,6 +691,7 @@ return {has:k=>!!sc[k],
     stage.dataset.tone=ph%4;
     if(best!==activeEv){ activeEv&&activeEv.btn.classList.remove('active'); activeEv=best; best&&best.btn.classList.add('active'); }
     if(hovered) place(hovered);
+    if(!more&&pendingOpen){ const it=pendingOpen; pendingOpen=null; show(it); navOpen=true; }
     if(more){rafOn=true; requestAnimationFrame(frame);}
   }
 
@@ -631,17 +735,22 @@ return {has:k=>!!sc[k],
   }
 
   /* horizontal input: sideways swipe / shift+wheel / arrow keys drive the timeline */
-  addEventListener('wheel',e=>{ if(mq.matches||e.ctrlKey) return; const dx=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:(e.shiftKey?e.deltaY:0); if(dx){ e.preventDefault(); scrollBy(0,dx); } },{passive:false});
-  addEventListener('keydown',e=>{ if(mq.matches||(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')) return; if(/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return; e.preventDefault(); scrollBy(0,(e.key==='ArrowRight'?1:-1)*320); });
+  addEventListener('wheel',e=>{ if(mq.matches||e.ctrlKey||$('#about').classList.contains('open')) return; if(navOpen){ navOpen=false; if(hovered) hide(hovered); } const dx=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:(e.shiftKey?e.deltaY:0); if(dx){ e.preventDefault(); scrollBy(0,dx); } },{passive:false});
+  addEventListener('keydown',e=>{ if(mq.matches||$('#about').classList.contains('open')||(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')) return; if(/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return; e.preventDefault(); scrollBy(0,(e.key==='ArrowRight'?1:-1)*320); });
   /* draggable progress head */
   const pr=$('.progress'); let dragging=false;
-  const seek=cx=>{ const r=pr.getBoundingClientRect(); const q=Math.min(1,Math.max(0,(cx-r.left)/r.width)); scrollTo(0,scrollY+journey.getBoundingClientRect().top+q*(jH-vh)); };
+  let dots=[], snapped=null;
+  const seek=cx=>{ const r=pr.getBoundingClientRect(); let q=Math.min(1,Math.max(0,(cx-r.left)/r.width)), hit=null;
+    for(const d of dots){ if(Math.abs(d.f-q)*r.width<6){ hit=d; break; } }
+    if(hit) q=hit.f;
+    if(hit!==snapped){ snapped=hit; dots.forEach(d=>d.el.classList.toggle('hit',d===hit)); if(hit){ navigator.vibrate&&navigator.vibrate(6); } }
+    scrollTo(0,scrollY+journey.getBoundingClientRect().top+q*(jH-vh)); };
   head.addEventListener('pointerdown',e=>{ head.setPointerCapture(e.pointerId); dragging=true; head.classList.add('drag'); e.preventDefault(); });
   head.addEventListener('pointermove',e=>{ if(dragging) seek(e.clientX); });
-  const endDrag=()=>{ dragging=false; head.classList.remove('drag'); };
+  const endDrag=()=>{ dragging=false; head.classList.remove('drag'); snapped=null; dots.forEach(d=>d.el.classList.remove('hit')); };
   head.addEventListener('pointerup',endDrag); head.addEventListener('pointercancel',endDrag);
   head.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); scrollBy(0,(e.key==='ArrowRight'?1:-1)*320); } });
-  pr.addEventListener('pointerdown',e=>{ if(e.target!==head) seek(e.clientX); });
+  pr.addEventListener('pointerdown',e=>{ if(e.target!==head&&!e.target.closest('.pd,.sv')) seek(e.clientX); });
   /* settings: font size, theme, vanishing notes */
   const root=document.documentElement; let fz=1, theme='light';
   try{ fz=parseFloat(localStorage.getItem('itt-fz'))||1; theme=localStorage.getItem('itt-theme')||'light'; }catch(_){}
@@ -672,7 +781,7 @@ return {has:k=>!!sc[k],
   addEventListener('resize',layout);
   mq.addEventListener('change',layout);
   document.fonts&&document.fonts.ready.then(layout);
-  build(); renderStars();
+  build(); renderDots(); renderStars();
 })();
 </script>
 </body>
